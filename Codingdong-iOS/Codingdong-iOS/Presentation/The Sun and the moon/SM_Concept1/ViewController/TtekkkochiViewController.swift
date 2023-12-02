@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Log
 
 final class TtekkkochiViewController: UIViewController, ConfigUI {
     var viewModel = TtekkkochiViewModel()
@@ -157,15 +158,16 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
     }
     
     func binding() {
+        initializeView()
         self.bottomView.setup(with: viewModel)
         self.viewModel.route
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] nextView in
-                for index in (0...4) { answerBlocks[index].isShowing = false }
                 self?.navigationController?.pushViewController(nextView, animated: false)
             })
             .store(in: &cancellable)
-    
+            
+        
         self.bottomView.$selectedValue
             .zip(bottomView.$initialValue)
             .sink { [weak self] value in
@@ -173,22 +175,35 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
                 guard value.1 else { return }
                 guard let self = self else { return }
         
+                // 정답일 때
                 if (index > -1 && index < 5) && (answerBlocks[index].value == value.0) {
                     answerBlocks[index].isShowing = true
                     DispatchQueue.global().async {
                         SoundManager.shared.playSound(sound: .bell)
                     }
-                   
+
+                    for idx in (0...4) where selectBlocks[idx].value == value.0 {
+                        selectBlocks[idx].isAccessible = false
+                        selectBlocks[idx].isShowing = false
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.bottomView.ttekkkochiCollectionView.reloadData()
+                    }
+                    
                     self.ttekkkochiCollectionView.reloadData()
                     self.blockIndex += 1
                     
                     switch index {
                     case 4:
+                        answerBlocks[index].isShowing = true
                         self.bottomView.isHidden = true
                         self.nextButton.isHidden = false
                         nextButton.setup(model: settingButtonViewModel)
-                        setupPraiseLabel()
-                        // TODO: 떡 크기 확대, tts
+                        self.ttekkkochiCollectionView.reloadData()
+                        titleLabel.text = "잘했어! 떡꼬치가 잘 만들어졌는지 한번 잘 들어봐!"
+                        ttekkkochiCollectionViewElement.accessibilityLabel = "만약에\n떡 하나 주면\n안 잡아먹는다\n아니면\n잡아먹는다\n잘 만들었는데? 이제 호랑이에게 주자!"
+                        UIAccessibility.post(notification: .layoutChanged, argument: titleLabel)
                     default:
                         return
                     }
@@ -200,17 +215,27 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
             .store(in: &cancellable)
     }
     
+    func initializeView() {
+        (0...4).forEach {
+            answerBlocks[$0].isShowing = false
+            selectBlocks[$0].isAccessible = true
+            selectBlocks[$0].isShowing = true
+            
+            ttekkkochiCollectionView.reloadData()
+            bottomView.ttekkkochiCollectionView.reloadData()
+        }
+    }
+    
     @objc
     func popThisView() {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.ttekkkochiCollectionView.reloadData()
+            self.bottomView.ttekkkochiCollectionView.reloadData()
+        }
+        
         self.navigationController?.pushViewController(CustomAlert(), animated: false)
     }
-    
-    func setupPraiseLabel() {
-        titleLabel.text = "잘했어! 떡꼬치가 잘 만들어졌는지 한번 잘 들어봐!"
-        ttekkkochiCollectionViewElement.accessibilityLabel = "만약에\n떡 하나 주면\n안 잡아먹는다\n아니면\n잡아먹는다\n잘 만들었는데? 이제 호랑이에게 주자!"
-        UIAccessibility.post(notification: .layoutChanged, argument: titleLabel)
-    }
-    
 }
 
 // MARK: - Extension
