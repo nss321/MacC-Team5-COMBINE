@@ -44,9 +44,10 @@ final class GiveTtekkViewController: UIViewController, ConfigUI {
         let label = UILabel()
         label.text = """
             Oh! The tiger is asking for rice cake again!
+            
             Shake the device and give rice cake!
             """
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

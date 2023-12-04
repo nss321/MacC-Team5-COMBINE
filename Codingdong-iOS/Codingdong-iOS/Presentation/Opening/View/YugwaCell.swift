@@ -24,7 +24,7 @@ final class YugwaCell: UICollectionViewCell {
     }
     
     override var accessibilityLabel: String? {
-        get { return "\(model.concept) 쿠키" }
+        get { return "\(model.concept) cookie" }
         set { _ = newValue }
     }
     

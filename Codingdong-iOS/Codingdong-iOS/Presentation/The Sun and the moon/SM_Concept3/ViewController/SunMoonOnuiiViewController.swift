@@ -29,7 +29,7 @@ final class SunMoonOnuiiViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
        let label = UILabel()
-        label.text = "동아줄을 잡은 남매와 호랑이"
+        label.text = "Climb the rope!"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -38,20 +38,20 @@ final class SunMoonOnuiiViewController: UIViewController, ConfigUI {
     private let contentLabel: UILabel = {
        let label = UILabel()
         label.text = """
-        고마워! 덕분에 오누이는 동아줄을 타고 하늘로 올라갔어.
-        하늘로 올라간 오누이는 해와 달이 되어서
-        너를 밝게 비춰주고 싶대.
+        The siblings could climb up the rope,
+        
+        and they became the sun and the moon.
         """
         label.textColor = .gs10
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
     }()
     
     private let nextButton = CommonButton()
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음으로", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) {[weak self] in
-        CddDBService().updateFood(Food(image: "img_yugwa1", concept: "반복문"))
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) {[weak self] in
+        CddDBService().updateFood(Food(image: "img_yugwa1", concept: "Loop"))
         self?.navigationController?.pushViewController(RepeatConceptViewController(), animated: false)
     }
     
@@ -117,17 +117,8 @@ final class SunMoonOnuiiViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My bookshelf")
         view.accessibilityElements = [contentLabel, nextButton, leftBarButtonElement]
-        contentLabel.accessibilityLabel = """
-                                        고마워!
-                                        
-                                        덕분에 오누이는 동아줄을 타고 하늘로 올라갔어.
-                                        
-                                        하늘로 올라간 오누이는 해와 달이 되어서
-                                        
-                                        너를 밝게 비춰주고싶대.
-                                        """
     }
     
 }

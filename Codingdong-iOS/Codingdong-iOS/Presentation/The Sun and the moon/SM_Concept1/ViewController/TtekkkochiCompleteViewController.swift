@@ -1,20 +1,19 @@
 //
-//  TtekkkochiViewController.swift
+//  TtekkkochiCompleteViewController.swift
 //  Codingdong-iOS
 //
-//  Created by Joy on 10/20/23.
+//  Created by Joy on 12/3/23.
 //
 
 import UIKit
-import Combine
-import Log
 import CoreMotion
+import Log
+import Combine
 
-final class TtekkkochiViewController: UIViewController, ConfigUI {
+final class TtekkkochiCompleteViewController: UIViewController {
+    private let motionManager = CMMotionManager()
     var viewModel = TtekkkochiViewModel()
     private var cancellable = Set<AnyCancellable>()
-    private var hapticManager: HapticManager?
-    private let motionManager = CMMotionManager()
     
     // MARK: - Components
     private let naviLine: UIView = {
@@ -44,15 +43,15 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.text = """
-        You can make rice cake skewers by swinging the phone quickly from right to left.
+        Good job! The Fllowing rice cakes were stuck. 'If you', 'give me the rice cake', 'I won't eat you.'
         
-        Let's make it and give it to the tiger!
+        This time, shall we shake our phone up and down?
         """
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
-        label.lineBreakMode = .byCharWrapping
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -73,26 +72,37 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
         return view
     }()
     
+    private let nextButton = CommonButton()
+    private lazy var settingButtonViewModel = CommonbuttonModel(title: "Next", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) {[weak self] in
+       self?.viewModel.selectItem()
+    }
+
     private let ttekkkochiCollectionViewElement: UIAccessibilityElement = {
-        let element = UIAccessibilityElement(accessibilityContainer: TtekkkochiViewController.self)
-        element.accessibilityLabel = "This is a skewer. Let's hurry up and swing the phone and put the rice cake in!"
+        let element = UIAccessibilityElement(accessibilityContainer: TtekkkochiCompleteViewController.self)
+        element.accessibilityLabel = "If you \n give me the rice cake, \n I won't eat you!"
         return element
     }()
     
-    // MARK: - View init
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gs90
+        //initializeView()
         setupNavigationBar()
         addComponents()
         setConstraints()
-        startRecordingDeviceMotion()
-        initializeView()
+        detectMotion()
+        binding()
+        nextButton.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupAccessibility()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+       // binding()
     }
     
     func setupNavigationBar() {
@@ -109,7 +119,7 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
     }
     
     func addComponents() {
-        [titleLabel, ttekkkochiCollectionView, stickView].forEach { view.addSubview($0) }
+        [titleLabel, ttekkkochiCollectionView, nextButton, stickView].forEach { view.addSubview($0) }
     }
     
     func setConstraints() {
@@ -121,44 +131,50 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
         ttekkkochiCollectionView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(40)
             $0.left.right.equalToSuperview().inset(95)
-            $0.bottom.equalToSuperview().offset(-120)
+            $0.bottom.equalToSuperview().offset(-115)
         }
         
         stickView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(28)
             $0.left.right.equalToSuperview().inset(191)
-            $0.bottom.equalToSuperview().offset(-90)
+            $0.bottom.equalToSuperview().offset(-115)
         }
         
         self.view.sendSubviewToBack(stickView)
+        
+        nextButton.snp.makeConstraints {
+            $0.left.right.equalToSuperview().inset(Constants.Button.buttonPadding)
+            $0.bottom.equalToSuperview().inset(Constants.Button.buttonPadding * 2)
+            $0.height.equalTo(72)
+        }
     }
     
     func setupAccessibility() {
         let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         ttekkkochiCollectionViewElement.accessibilityFrameInContainerSpace = ttekkkochiCollectionView.frame
-        view.accessibilityElements = [titleLabel, ttekkkochiCollectionViewElement, leftBarButtonElement]
+        view.accessibilityElements = [titleLabel, ttekkkochiCollectionViewElement, nextButton, leftBarButtonElement]
     }
     
-    func initializeView() {
-        (0...4).forEach {
-            answerBlocks[$0].isShowing = false
-            selectBlocks[$0].isAccessible = true
-            selectBlocks[$0].isShowing = true
-            ttekkkochiCollectionView.reloadData()
-        }
+    func binding() {
+        self.viewModel.route
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] nextView in
+                self?.navigationController?.pushViewController(nextView, animated: false)
+            })
+            .store(in: &cancellable)
     }
     
     @objc
     func popThisView() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { self.ttekkkochiCollectionView.reloadData()
         }
-        
+//
         self.navigationController?.pushViewController(CustomAlert(), animated: false)
     }
 }
 
 // MARK: - Extension
-extension TtekkkochiViewController: UICollectionViewDataSource {
+extension TtekkkochiCompleteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return answerBlocks.count
     }
@@ -170,16 +186,15 @@ extension TtekkkochiViewController: UICollectionViewDataSource {
     }
 }
 
-extension TtekkkochiViewController: UICollectionViewDelegateFlowLayout {
+extension TtekkkochiCompleteViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = collectionView.frame.size.width
         return CGSize(width: cellWidth, height: cellWidth/3.2)
     }
 }
 
-extension TtekkkochiViewController {
-    
-    func startRecordingDeviceMotion() {
+extension TtekkkochiCompleteViewController {
+    func detectMotion() {
         
         // Device motion을 수집 가능한지 확인
         guard motionManager.isDeviceMotionAvailable else {
@@ -193,20 +208,27 @@ extension TtekkkochiViewController {
             guard let data = data, error == nil else {return}
             // 필요한 센서값 불러오기
             let acceleration = data.userAcceleration
+            let shakeThreshold = 0.5  // 흔들기 인식 강도
 
-            if (abs(acceleration.x).toDegrees() > 90 && abs(acceleration.y).toDegrees() > 0 && abs(acceleration.z).toDegrees() > 45) {
-//                print("===========")
-//                Log.d(abs(acceleration.x).toDegrees())
-//                Log.d(abs(acceleration.y.toDegrees()))
-//                Log.d(abs(acceleration.z.toDegrees()))
-//                print("===========")
-//
-                (0...2).forEach { answerBlocks[$0].isShowing = true }
-                DispatchQueue.global().async { SoundManager.shared.playSound(sound: .bell) }
-                self?.ttekkkochiCollectionView.reloadData()
-                
-                self?.motionManager.stopDeviceMotionUpdates()
-                self?.navigationController?.pushViewController(TtekkkochiCompleteViewController(), animated: false)
+            if acceleration.x >= shakeThreshold || acceleration.y >= shakeThreshold || acceleration.z >= shakeThreshold {
+                if abs(acceleration.x) < 0.5 && abs(acceleration.y) > 0 && abs(acceleration.z) < 0.5 {
+                    (3...4).forEach { answerBlocks[$0].isShowing = true }
+                    DispatchQueue.global().async { SoundManager.shared.playSound(sound: .bell) }
+                    self?.ttekkkochiCollectionView.reloadData()
+                    self?.titleLabel.text = """
+                                            Fantastic!
+                                            
+                                            Let's check if it's well made!
+                                            
+                                            """
+                    self?.ttekkkochiCollectionViewElement.accessibilityLabel = "If you \n give me the rice cake \n I won't eat you \n If else, \n I'll eat you \n Wow. It's perfect. Let's move on. "
+                    UIAccessibility.post(notification: .layoutChanged, argument: self?.titleLabel)
+                    
+                    self?.motionManager.stopDeviceMotionUpdates()
+                    self?.nextButton.isHidden = false
+                    self?.nextButton.setup(model: self!.settingButtonViewModel)
+
+                }
             }
         }
     }

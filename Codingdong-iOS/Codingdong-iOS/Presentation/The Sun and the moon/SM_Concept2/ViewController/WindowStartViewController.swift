@@ -20,7 +20,7 @@ final class WindowStartViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "남매의 집에 도착한 호랑이"
+        label.text = "At the siblings’ house"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -39,15 +39,13 @@ final class WindowStartViewController: UIViewController, ConfigUI {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = """
-        아직 배가 고픈 호랑이는 오누이도 잡아먹고 싶어졌어.
+        The tiger was still hungry, so the tiger decided to find a sibling.
 
-        그래서 엄마로 변장하는 꾀를 냈어.
-        
-        과연 오누이는 엄마로 변장한 호랑이를 알아차릴 수 있을까?
+        So the tiger dressed up as a mother and went to the sibling's house.
 
-        오누이를 도와 문 밖의 무서운 호랑이의 정체를 밝혀보자!!
+        Let's help the sibling identify the scary tiger outside the door.
         """
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -56,7 +54,7 @@ final class WindowStartViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "구멍엿보기",font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) { [weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Sneak the hole",font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) { [weak self] in
         self?.navigationController?.pushViewController(WindowHoleViewController(), animated: false)
     }
     
@@ -106,7 +104,7 @@ final class WindowStartViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
         view.accessibilityElements = [naviTitleElement, titleLabel, nextButton, leftBarButtonElement]
     }

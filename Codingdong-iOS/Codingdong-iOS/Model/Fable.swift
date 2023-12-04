@@ -24,4 +24,4 @@ final class FableData {
 //             FableData(title: "콩쥐팥쥐", isRead: false),
 //             FableData(title: "별주부전", isRead: false)]
 
-let fables = [FableData(title: "해님달님", isRead: true)]
+let fables = [FableData(title: "The Sun and The Moon", isRead: true)]

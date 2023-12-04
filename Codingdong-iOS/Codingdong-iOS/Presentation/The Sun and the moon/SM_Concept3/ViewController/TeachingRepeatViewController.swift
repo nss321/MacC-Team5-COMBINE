@@ -29,7 +29,7 @@ final class TeachingRepeatViewController: UIViewController, ConfigUI {
   
     private let navigationTitle: UILabel = {
        let label = UILabel()
-        label.text = "동아줄을 잡은 남매와 호랑이"
+        label.text = "Climb the rope!"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -38,14 +38,14 @@ final class TeachingRepeatViewController: UIViewController, ConfigUI {
     private let contentLabel: UILabel = {
        let label = UILabel()
         label.text = """
-         지금까지 10번 흔들었어.
+         You have shaken it 10 times so far.
 
-         어때, 힘들지 않아?
-
-         반복문을 사용하면, 원하는 횟수만큼 자동으로 반복할 수 있어!
+         Is it hard?
+         
+         If you use a 'Repeat', you can complete more comfortably.
          """
         label.textColor = .gs10
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
@@ -70,7 +70,7 @@ final class TeachingRepeatViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음으로", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) {[weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) {[weak self] in
         self?.navigationController?.pushViewController(SunMoonOnuiiViewController(), animated: false)
     }
 
@@ -134,17 +134,9 @@ final class TeachingRepeatViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         view.accessibilityElements = [contentLabel, repeatImage, nextButton, leftBarButtonElement]
-        
-        contentLabel.accessibilityLabel = """
-                                         지금까지 열번 흔들었어.
-
-                                         어때, 힘들지 않아?
-
-                                         반복문을 사용하면, 원하는 횟수만큼 자동으로 반복할 수 있어!
-                                         """
-        repeatImage.accessibilityLabel = "그럼 100번 흔드는 것도 금방 할 수 있겠지?"
+        repeatImage.accessibilityLabel = "Then, you can shake 100 times quickly. right?"
         repeatImage.accessibilityTraits = .none
     }
     

@@ -33,7 +33,7 @@ final class OnuiiViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
        let label = UILabel()
-        label.text = "동아줄을 잡은 남매와 호랑이"
+        label.text = "Climb the rope!"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -42,21 +42,21 @@ final class OnuiiViewController: UIViewController, ConfigUI {
     private let contentLabel: UILabel = {
        let label = UILabel()
         label.text = """
-         오누이는 호랑이를 피하기 위해 동아줄을 붙잡고 올라갔어.
+         The siblings started to climb the rope to avoid the tiger.
 
-         하지만, 어린 오누이가 올라가기에는 너무 힘든 것 같아.
+         However, it was so hard for the little siblings to climb up the rope.
 
-         오누이가 무사히 올라갈 수 있도록 도와줘!
+         Please help the siblings climb safely!
          """
         label.textColor = .gs10
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
     }()
     
     private let rescueButton = CommonButton()
-    private lazy var rescuButtonViewModel = CommonbuttonModel(title: "오누이 구출하기", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) {[weak self] in
+    private lazy var rescuButtonViewModel = CommonbuttonModel(title: "Help the siblings", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) {[weak self] in
         
         self?.navigationController?.pushViewController(RopeViewController(), animated: false)
     }
@@ -107,7 +107,7 @@ final class OnuiiViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My bookshelf")
         let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
         view.accessibilityElements = [naviTitleElement, contentLabel, rescueButton, leftBarButtonElement]
     }

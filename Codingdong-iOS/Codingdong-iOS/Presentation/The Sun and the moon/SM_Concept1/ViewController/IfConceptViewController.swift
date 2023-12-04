@@ -19,7 +19,7 @@ final class IfConceptViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "개념 한입"
+        label.text = "One bite of coding"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -37,8 +37,8 @@ final class IfConceptViewController: UIViewController, ConfigUI {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "첫 번째 코딩 간식이야"
-        label.font = FontManager.body()
+        label.text = "First coding concept!"
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping
@@ -47,13 +47,13 @@ final class IfConceptViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음 이야기", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72, didTouchUpInside: didClickNextButton)
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next Chapter", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72, didTouchUpInside: didClickNextButton)
     
     private let basicPadding = Constants.Button.buttonPadding
     
     private let cardView = CardView()
     
-    private let cardViewModel = CardViewModel(title: "만약에와 아니면 떡", content: "만약에 떡과, 아니면 떡으로 엄마가 고개를 넘기 위한 장면을 두개 만들어 봤어.", cardImage: "sm_concept1")
+    private let cardViewModel = CardViewModel(title: "If Keyword", content: "By using ‘If’ and ‘Else’, we can create the situation that mother can cross the hill.", cardImage: "sm_concept1")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +110,7 @@ final class IfConceptViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
         view.accessibilityElements = [naviTitleElement, titleLabel, cardView, nextButton, leftBarButtonElement]
     }
@@ -119,7 +119,7 @@ final class IfConceptViewController: UIViewController, ConfigUI {
 extension IfConceptViewController {
     @objc
     func didClickNextButton() {
-        CddDBService().updateFood(Food(image: "img_yugwa3", concept: "조건문"))
+        CddDBService().updateFood(Food(image: "img_yugwa3", concept: "Conditional"))
         self.navigationController?.pushViewController(WindowStartViewController(), animated: false)
     }
     

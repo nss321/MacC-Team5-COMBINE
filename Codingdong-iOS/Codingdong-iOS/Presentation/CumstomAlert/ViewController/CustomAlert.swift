@@ -19,7 +19,7 @@ final class CustomAlert:UIViewController, ConfigUI {
     
     private let alertTitle: UILabel = {
         let label = UILabel()
-        label.font = FontManager.callout()
+        label.font = FontManager.caption1()
         label.textColor = .white
         label.text = "Back to the Bookshelf"
         label.textAlignment = .center

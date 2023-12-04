@@ -20,7 +20,7 @@ final class TigerAnimationViewController: UIViewController, ConfigUI {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Rice cakes were all taken, and finally mother was also eaten by the tiger."
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

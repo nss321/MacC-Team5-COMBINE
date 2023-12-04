@@ -14,17 +14,17 @@ struct CodingBlock {
 }
 
 var answerBlocks: [CodingBlock] = [
-    CodingBlock(value: "만약에", isShowing: false, bgColor: .secondary1, isAccessible: true),
-    CodingBlock(value: "떡 하나 주면", isShowing: false, bgColor: .secondary2, isAccessible: true),
-    CodingBlock(value: "안 잡아먹는다", isShowing: false, bgColor: .secondary2, isAccessible: true),
-    CodingBlock(value: "아니면", isShowing: false, bgColor: .secondary1, isAccessible: true),
-    CodingBlock(value: "잡아먹는다", isShowing: false, bgColor: .secondary2, isAccessible: true)
+    CodingBlock(value: "If you", isShowing: false, bgColor: .secondary1, isAccessible: true),
+    CodingBlock(value: "give me the rice cake", isShowing: false, bgColor: .secondary2, isAccessible: true),
+    CodingBlock(value: "I won't eat you.", isShowing: false, bgColor: .secondary2, isAccessible: true),
+    CodingBlock(value: "If else", isShowing: false, bgColor: .secondary1, isAccessible: true),
+    CodingBlock(value: "I'll eat you.", isShowing: false, bgColor: .secondary2, isAccessible: true)
 ]
 
 var selectBlocks: [CodingBlock] = [
-    CodingBlock(value: "잡아먹는다", isShowing: true, bgColor: .secondary2, isAccessible: true),
-    CodingBlock(value: "아니면", isShowing: true, bgColor: .secondary1, isAccessible: true),
-    CodingBlock(value: "안 잡아먹는다", isShowing: true, bgColor: .secondary2, isAccessible: true),
-    CodingBlock(value: "만약에", isShowing: true, bgColor: .secondary1, isAccessible: true),
-    CodingBlock(value: "떡 하나 주면", isShowing: true, bgColor: .secondary2, isAccessible: true)
+    CodingBlock(value: "I'll eat you.", isShowing: true, bgColor: .secondary2, isAccessible: true),
+    CodingBlock(value: "If else", isShowing: true, bgColor: .secondary1, isAccessible: true),
+    CodingBlock(value: "I won't eat you.", isShowing: true, bgColor: .secondary2, isAccessible: true),
+    CodingBlock(value: "If you", isShowing: true, bgColor: .secondary1, isAccessible: true),
+    CodingBlock(value: "give me the rice cake", isShowing: true, bgColor: .secondary2, isAccessible: true)
 ]

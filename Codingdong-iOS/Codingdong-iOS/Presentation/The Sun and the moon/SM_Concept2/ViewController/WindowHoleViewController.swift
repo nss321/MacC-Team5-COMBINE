@@ -27,7 +27,7 @@ final class WindowHoleViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
        let label = UILabel()
-        label.text = "남매의 집에 도착한 호랑이"
+        label.text = "At the siblings’ house"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -36,10 +36,9 @@ final class WindowHoleViewController: UIViewController, ConfigUI {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = """
-                    창호지 문에 구멍이 뚫려있어. 
-                    구멍을 두번 누르면 밖에 누가 있는지 알 수 있어!
+                    Tap holes and find out who's outside the door.
                     """
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -77,7 +76,7 @@ final class WindowHoleViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음으로",font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) { [weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next",font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) { [weak self] in
         self?.navigationController?.pushViewController(WindowVoiceViewController(), animated: false)
     }
     
@@ -158,7 +157,7 @@ final class WindowHoleViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         
         view.accessibilityElements = [titleLabel, tigerNoseHoleAnimationView, tigerHandHoleAnimationView, tigerTailHoleAnimationView, nextButton, leftBarButtonElement]
     }
@@ -188,19 +187,19 @@ extension WindowHoleViewController {
         if let type = AnimationType(rawValue: sender.view?.tag ?? 1) {
             switch type {
             case .hand:
-                tigerHandHoleAnimationView.lottieView.accessibilityLabel = "손톱이 날카로운 호랑이 손"
+                tigerHandHoleAnimationView.lottieView.accessibilityLabel = "a tiger's hand with sharp claws"
                 HapticManager.shared?.playSplash()
                 SoundManager.shared.playSound(sound: .tiger)
                 LottieManager.shared.playAnimation(inView: tigerHandHoleAnimationView.lottieView, completion: nil)
                 LottieManager.shared.removeAnimation(inView: tigerHandHoleAnimationView.lottieView)
             case .nose:
-                tigerNoseHoleAnimationView.lottieView.accessibilityLabel = "킁킁 거리고 있는 호랑이 코"
+                tigerNoseHoleAnimationView.lottieView.accessibilityLabel = "a sniffing tiger's nose"
                 HapticManager.shared?.playSplash()
                 SoundManager.shared.playSound(sound: .tiger)
                 LottieManager.shared.playAnimation(inView: tigerNoseHoleAnimationView.lottieView, completion: nil)
                 LottieManager.shared.removeAnimation(inView: tigerNoseHoleAnimationView.lottieView)
             case .tail:
-                tigerTailHoleAnimationView.lottieView.accessibilityLabel = "살랑살랑 흔들리는 호랑이 꼬리"
+                tigerTailHoleAnimationView.lottieView.accessibilityLabel = "a wobbly tiger's tail"
                 HapticManager.shared?.playSplash()
                 SoundManager.shared.playSound(sound: .tiger)
                 LottieManager.shared.playAnimation(inView: tigerTailHoleAnimationView.lottieView, completion: nil)

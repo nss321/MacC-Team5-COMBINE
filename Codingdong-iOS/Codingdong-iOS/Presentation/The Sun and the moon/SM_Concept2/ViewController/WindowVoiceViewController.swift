@@ -19,7 +19,7 @@ final class WindowVoiceViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "남매의 집에 도착한 호랑이"
+        label.text = "At the siblings’ house"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -38,11 +38,10 @@ final class WindowVoiceViewController: UIViewController, ConfigUI {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = """
-                    어때? 밖에 있는게
-                    엄마일까, 호랑이일까?
-                    문을 열어줘도 될까?
+                    What do you think? Is it a mother or a tiger outside the door?
+                    Do you think it's okay to open the door?
                     """
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping
@@ -57,13 +56,13 @@ final class WindowVoiceViewController: UIViewController, ConfigUI {
     }()
     
     private let yesButton = CommonButton()
-    private lazy var yesButtonViewModel = CommonbuttonModel(title: "열어줄래", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) { [weak self] in
+    private lazy var yesButtonViewModel = CommonbuttonModel(title: "Okay.", font: FontManager.footnote(), titleColor: .primary1, backgroundColor: .primary2, height: 72) { [weak self] in
         UserDefaults.standard.set(0, forKey: "key")
         self?.navigationController?.pushViewController(WindowEndingViewController(), animated: false)
     }
     
     private let noButton = CommonButton()
-    private lazy var noButtonViewModel = CommonbuttonModel(title: "안 열어줄래", font: FontManager.textbutton(), titleColor: .white, backgroundColor: .primary1, height: 72) { [weak self] in
+    private lazy var noButtonViewModel = CommonbuttonModel(title: "It's not okay.", font: FontManager.footnote(), titleColor: .white, backgroundColor: .primary1, height: 72) { [weak self] in
         UserDefaults.standard.set(1, forKey: "key")
         self?.navigationController?.pushViewController(WindowEndingViewController(), animated: false)
     }
@@ -128,13 +127,8 @@ final class WindowVoiceViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         view.accessibilityElements = [titleLabel, yesButton, noButton, leftBarButtonElement]
-        titleLabel.accessibilityLabel = """
-                                        문 바끌 확인해보니 어때?
-                                        엄마일까, 호랑이일까?
-                                        문을 열어줘도 될까?
-                                        """
     }
     
     @objc

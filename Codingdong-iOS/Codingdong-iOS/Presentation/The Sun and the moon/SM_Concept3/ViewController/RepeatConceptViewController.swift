@@ -20,7 +20,7 @@ final class RepeatConceptViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "개념 한입"
+        label.text = "One bite of coding"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -38,8 +38,8 @@ final class RepeatConceptViewController: UIViewController, ConfigUI {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "마지막 코딩 간식이야."
-        label.font = FontManager.body()
+        label.text = "Third coding concept!"
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -51,9 +51,9 @@ final class RepeatConceptViewController: UIViewController, ConfigUI {
     
     // MARK: - ViewModel
     private var viewModel = OnuiiViewModel()
-    private var cardViewModel = CardViewModel(title: "거듭하기 젤리", content: "흔들기 동작을 반복하면서 오누이가 동아줄을 오를 수 있게 도와줬어. 고마워!", cardImage: "sm_concept3")
+    private var cardViewModel = CardViewModel(title: "Repeat Keyword", content: "By repeating the shaking motion, we could help the siblings climb the rope.", cardImage: "sm_concept3")
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "복습하기", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10, height: 72) {[weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Review", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10, height: 72) {[weak self] in
         self?.navigationController?.pushViewController(ReviewViewController(), animated: false)
     }
     
@@ -109,7 +109,7 @@ final class RepeatConceptViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My bookshelf")
         let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
         view.accessibilityElements = [naviTitleElement, titleLabel, cardView, nextButton, leftBarButtonElement]
     }

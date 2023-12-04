@@ -18,7 +18,7 @@ final class AndConceptViewController: UIViewController {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "개념 한입"
+        label.text = "One bite of coding"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -36,8 +36,8 @@ final class AndConceptViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "두 번째 코딩 간식이야"
-        label.font = FontManager.body()
+        label.text = "Second coding concept!"
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping
@@ -46,13 +46,13 @@ final class AndConceptViewController: UIViewController {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음 챕터로", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10, height: 72, didTouchUpInside: didClickNextButton)
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next Chapter", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10, height: 72, didTouchUpInside: didClickNextButton)
     
     private let basicPadding = Constants.Button.buttonPadding
     
     private let cardView = CardView()
     
-    private let cardViewModel = CardViewModel(title: "그리고 과자", content: "발톱, 꼬리 그리고 수염을 확인해서 호랑이인 걸 알 수 있었어.", cardImage: "sm_concept2")
+    private let cardViewModel = CardViewModel(title: "And Keyword", content: "We could figure out it was a tiger by finding its claws, tail, and beard.", cardImage: "sm_concept2")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +107,7 @@ final class AndConceptViewController: UIViewController {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
         view.accessibilityElements = [naviTitleElement, titleLabel, cardView, nextButton, leftBarButtonElement]
     }
@@ -116,7 +116,7 @@ final class AndConceptViewController: UIViewController {
 extension AndConceptViewController {
     @objc
     func didClickNextButton() {
-        CddDBService().updateFood(Food(image: "img_yugwa2", concept: "연산자"))
+        CddDBService().updateFood(Food(image: "img_yugwa2", concept: "Operator"))
         self.navigationController?.pushViewController(OnuiiViewController(), animated: false)
     }
     

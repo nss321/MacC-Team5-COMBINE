@@ -13,9 +13,9 @@ final class ReviewViewController: UIViewController, ConfigUI {
     // 뷰 전체 model, cellModel
     // MARK: - ViewModel
     private var viewModel = ReviewViewModel()
-    private var cellModels: [CardViewModel] = [.init(title: "만약에 : 조건문", content: "만약에는 코딩의 ‘조건문’과 같아. 조건문은 정해진 상황에 따라 다른 동작을 하게 만들 수 있어.", cardImage: "sm_review1"),
-        .init(title: "그리고 : 연산자", content: "그리고는 코딩의 ‘연산자’와 같아. 구멍 세개를 보고 호랑이인 걸 알 수 있었지? 이처럼 여러 조건이 같을 때 정답이 되는 개념이야.", cardImage: "sm_review2"),
-        .init(title: "거듭하기 : 반복문", content: "거듭하기는 코딩의 ‘반복문’과 같아. 반복문을 사용하면 같은 동작을 원하는 만큼 자동으로 할 수 있어.", cardImage: "sm_review3")]
+    private var cellModels: [CardViewModel] = [.init(title: "If : Conditional", content: "'If' corresponds to 'Conditional' in codes. It can cause different actions depending on the situation.", cardImage: "sm_review1"),
+        .init(title: "And : Operator", content: "'And' corresponds to 'Operator' in codes. Operator judges the 'true' and 'false' of the condition.", cardImage: "sm_review2"),
+        .init(title: "Repeat : Loops", content: "'Repeat' corresponds to 'Loops' in codes. Loops can make the same action repeat.", cardImage: "sm_review3")]
     
     // MARK: - Components
     private let naviLine: UIView = {
@@ -26,7 +26,7 @@ final class ReviewViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "코딩 개념 복습"
+        label.text = "Review"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -44,10 +44,10 @@ final class ReviewViewController: UIViewController, ConfigUI {
     
     private let contentLabel: UILabel = {
         let label = UILabel()
-        label.text = "해님달님에서 세 가지 개념을 배웠어."
+        label.text = "Three coding concepts from 'The Sun and The Moon'"
         label.textColor = .gs10
         label.numberOfLines = 0
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.lineBreakMode = .byWordWrapping
         return label
     }()
@@ -72,7 +72,7 @@ final class ReviewViewController: UIViewController, ConfigUI {
     
     private let pageControl = UIPageControl()
     private let nextButton = CommonButton()
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "이야기 끝내기", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10) {[weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "End the story", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10) {[weak self] in
         self?.viewModel.endStory()
         self?.navigationController?.popToRootViewController(animated: false)
     }
@@ -161,7 +161,7 @@ final class ReviewViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My bookshelf")
         let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
         view.accessibilityElements = [naviTitleElement, contentLabel, reviewCollectionView, nextButton, leftBarButtonElement]
     }

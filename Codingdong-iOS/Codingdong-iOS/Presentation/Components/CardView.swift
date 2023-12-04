@@ -37,7 +37,7 @@ final class CardView: UIView {
     
     private lazy var contentLabel: UILabel = {
        let label = UILabel()
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .white
         label.numberOfLines = 0
         label.lineBreakMode = .byCharWrapping

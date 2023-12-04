@@ -32,7 +32,7 @@ final class RopeViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
        let label = UILabel()
-        label.text = "동아줄을 잡은 남매와 호랑이"
+        label.text = "Climb the rope!"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -40,9 +40,9 @@ final class RopeViewController: UIViewController, ConfigUI {
     
     private let contentLabel: UILabel = {
        let label = UILabel()
-        label.text = "휴대폰을 꽉 붙잡고 100번 흔들어보자!"
+        label.text = "Shake the phone 100 times!"
         label.textColor = .gs10
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
@@ -102,9 +102,9 @@ final class RopeViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My bookshelf")
         view.accessibilityElements = [contentLabel, ropeImage, leftBarButtonElement]
-        ropeImage.accessibilityLabel = "하늘에서 내려온 동아줄이야. 얼른 붙잡고 흔들어서 올라가야해!"
+        ropeImage.accessibilityLabel = "It's a rope from the sky. We have to grab it and shake it up!"
         ropeImage.accessibilityTraits = .none
     }
     

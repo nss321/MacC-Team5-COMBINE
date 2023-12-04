@@ -15,7 +15,7 @@ final class TigerTailHoleAnimationView: UIView {
         view.backgroundColor = .clear
         LottieManager.shared.setAnimationForWindow(named: "TigerTailHoleAnimation", inView: view)
         view.isAccessibilityElement = true
-        view.accessibilityLabel = "세번째 구멍"
+        view.accessibilityLabel = "Third Hole"
         return view
     }()
     

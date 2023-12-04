@@ -49,7 +49,7 @@ final class TigerEncountViewController: UIViewController, ConfigUI {
 
                     Let’s make rice cake skewer for mother’s safety!
                     """
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping

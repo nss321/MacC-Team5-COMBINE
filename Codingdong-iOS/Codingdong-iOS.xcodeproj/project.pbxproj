@@ -10,6 +10,8 @@
 		112003D12AE574FB00924FAB /* LottieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112003D02AE574FB00924FAB /* LottieManager.swift */; };
 		112003D42AE5752300924FAB /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 112003D32AE5752300924FAB /* Lottie */; };
 		112003D82AE5792600924FAB /* TigerAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112003D72AE5792600924FAB /* TigerAnimationViewController.swift */; };
+		113B202F2B1E29810089C61B /* TtekkkochiCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B202E2B1E29810089C61B /* TtekkkochiCompleteViewController.swift */; };
+		113B20312B1E29DF0089C61B /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113B20302B1E29DF0089C61B /* Double.swift */; };
 		1143C6832AF4D6440032CE53 /* MyBookShelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143C6822AF4D6440032CE53 /* MyBookShelfViewController.swift */; };
 		1143C6882AF6A31F0032CE53 /* StoryListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143C6872AF6A31F0032CE53 /* StoryListTableView.swift */; };
 		1143C68C2AF6B01E0032CE53 /* StoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1143C68B2AF6B01E0032CE53 /* StoryListTableViewCell.swift */; };
@@ -143,6 +145,8 @@
 /* Begin PBXFileReference section */
 		112003D02AE574FB00924FAB /* LottieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieManager.swift; sourceTree = "<group>"; };
 		112003D72AE5792600924FAB /* TigerAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TigerAnimationViewController.swift; sourceTree = "<group>"; };
+		113B202E2B1E29810089C61B /* TtekkkochiCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TtekkkochiCompleteViewController.swift; sourceTree = "<group>"; };
+		113B20302B1E29DF0089C61B /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		1143C6822AF4D6440032CE53 /* MyBookShelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBookShelfViewController.swift; sourceTree = "<group>"; };
 		1143C6872AF6A31F0032CE53 /* StoryListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListTableView.swift; sourceTree = "<group>"; };
 		1143C68B2AF6B01E0032CE53 /* StoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListTableViewCell.swift; sourceTree = "<group>"; };
@@ -366,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				117D27882B0CCE9200AF22B3 /* UIViewController+.swift */,
+				113B20302B1E29DF0089C61B /* Double.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				67816A492AE26FEF00B121B6 /* GiveTtekkViewController.swift */,
 				A87217C62AE212C6003C0D5C /* TtekkkochiViewController.swift */,
 				11CD0EE62AFE031400911B64 /* IfConceptViewController.swift */,
+				113B202E2B1E29810089C61B /* TtekkkochiCompleteViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1028,6 +1034,7 @@
 				A897A9752AFF6AC000008722 /* Fable.swift in Sources */,
 				116A95532ADF72AB0096760A /* FontManager.swift in Sources */,
 				A8BE07F32B00DBA700DD7378 /* TigerEncounterViewModel.swift in Sources */,
+				113B20312B1E29DF0089C61B /* Double.swift in Sources */,
 				A864F00D2AE03FC3007F4012 /* ConfigUI.swift in Sources */,
 				670E09A22AFCAF81008AA6D5 /* WindowVoiceViewController.swift in Sources */,
 				112003D12AE574FB00924FAB /* LottieManager.swift in Sources */,
@@ -1056,6 +1063,7 @@
 				A8C966F02B011914005105E8 /* CustomCollectionViewFlowLayout.swift in Sources */,
 				A8C2A8C02B17212100EEDA53 /* KPWorkViewController.swift in Sources */,
 				67BAECF12B000446006FB6D3 /* TigerHandHoleAnimationView.swift in Sources */,
+				113B202F2B1E29810089C61B /* TtekkkochiCompleteViewController.swift in Sources */,
 				67816A4A2AE26FEF00B121B6 /* GiveTtekkViewController.swift in Sources */,
 				A8BE07FD2B00FECA00DD7378 /* ReviewViewModel.swift in Sources */,
 				67BAECFD2B0039F8006FB6D3 /* AndConceptViewController.swift in Sources */,
@@ -1245,7 +1253,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Codingdong-iOS/Util/Resources/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "코딩동";
+				INFOPLIST_KEY_CFBundleDisplayName = CoDingDong;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위한 마이크 사용 권한";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Codongdong;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1279,7 +1287,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Codingdong-iOS/Util/Resources/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "코딩동";
+				INFOPLIST_KEY_CFBundleDisplayName = CoDingDong;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위한 마이크 사용 권한";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Codongdong;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

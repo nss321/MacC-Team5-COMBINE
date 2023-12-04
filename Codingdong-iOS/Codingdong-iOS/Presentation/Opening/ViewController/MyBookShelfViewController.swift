@@ -36,7 +36,7 @@ final class MyBookShelfViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "My BookShelf"
+        label.text = "My Bookshelf"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label

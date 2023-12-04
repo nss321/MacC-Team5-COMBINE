@@ -13,15 +13,14 @@ final class WindowEndingViewController: UIViewController, ConfigUI {
     private var isSuccessInt = UserDefaults.standard.integer(forKey: "key")
     let titleLabelText: [String] = [
         """
-        아앗, 오누이가 호랑이한테 잡아먹히고 말았어.
-        다시 해 볼까?
+        Oh, siblings were eaten by a tiger.
+        Do you want to try again?
         """,
         """
-        잘했어! 정답이야!
-        호랑이를 본 오누이는 무사히 뒷문으로 도망쳤어!
+        Seeing the tiger, the siblings ran through the back door
         """]
     let imageName: [String] = ["tigerEatEnding", "initialDoor"]
-    let buttonName: [String] = ["다시하기", "다음으로"]
+    let buttonName: [String] = ["Try again", "Next"]
     
     private let naviLine: UIView = {
         let view = UIView()
@@ -31,7 +30,7 @@ final class WindowEndingViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "남매의 집에 도착한 호랑이"
+        label.text = "At the siblings’ house"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -50,7 +49,7 @@ final class WindowEndingViewController: UIViewController, ConfigUI {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = titleLabelText[isSuccessInt]
-        label.font = FontManager.body()
+        label.font = FontManager.footnote()
         label.textColor = .gs10
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
@@ -125,7 +124,7 @@ final class WindowEndingViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         view.accessibilityElements = [titleLabel, nextButton, leftBarButtonElement]
     }
     
