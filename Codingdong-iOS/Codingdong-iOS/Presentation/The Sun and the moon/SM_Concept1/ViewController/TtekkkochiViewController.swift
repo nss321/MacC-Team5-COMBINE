@@ -24,7 +24,7 @@ final class TtekkkochiViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "호랑이를 마주친 엄마"
+        label.text = "Mother met the tiger"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label

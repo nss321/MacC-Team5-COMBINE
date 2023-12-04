@@ -24,7 +24,7 @@ final class GiveTtekkViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "호랑이를 마주친 엄마"
+        label.text = "Mother met the tiger"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -42,7 +42,10 @@ final class GiveTtekkViewController: UIViewController, ConfigUI {
 //    
     private let storyLabel: UILabel = {
         let label = UILabel()
-        label.text = "호랑이가 떡을 또 달래! 핸드폰을 흔들어서 얼른 떡을 줘버리자!"
+        label.text = """
+            Oh! The tiger is asking for rice cake again!
+            Shake the device and give rice cake!
+            """
         label.font = FontManager.body()
         label.textColor = .gs10
         label.numberOfLines = 0
@@ -61,7 +64,7 @@ final class GiveTtekkViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음으로", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) { [weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2) { [weak self] in
         self?.navigationController?.pushViewController(TigerAnimationViewController(), animated: false)
     }
     
@@ -81,9 +84,9 @@ final class GiveTtekkViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         view.accessibilityElements = [storyLabel, ttekkStackView, nextButton, leftBarButtonElement]
-        ttekkStackView.accessibilityLabel = "떡이 다섯개 남았어. 얼른 호랑이한테 떡을 주자!"
+        ttekkStackView.accessibilityLabel = "There are five rice cakes left. Let's give them to the tiger!"
     }
     
     func setupNavigationBar() {
@@ -155,7 +158,7 @@ extension GiveTtekkViewController {
             ttekkStackView.removeArrangedSubview(poppedView)
             poppedView.removeFromSuperview()
             hapticManager?.playNomNom()
-            ttekkStackView.accessibilityLabel = "떡이 \(ttekks.count - 1)개 남았어. 얼른 호랑이한테 떡을 주자!"
+            ttekkStackView.accessibilityLabel = "There are \(ttekks.count - 1) rice cakes left. Let's give them to the tiger!"
         } else {
             // 다음 뷰
             ttekkStackView.isHidden = true
@@ -164,11 +167,11 @@ extension GiveTtekkViewController {
             motionManager.stopAccelerometerUpdates()
             nextButton.isHidden = false
             storyLabel.text = """
-                        욕심쟁이 호랑이는 아직도 배가 고픈가봐.
-                            
-                        이제는 떡이 더이상 없는데 어떡하지?
-                            
-                        호랑이가 엄마를 무섭게 노려보고 있어,,,
+                        The greedy tiger must still be hungry.
+
+                        We don't have any more rice cakes. What should we do?
+
+                        The tiger is staring at the mother in fear,,,
                         """
             UIAccessibility.post(notification: .layoutChanged, argument: self.storyLabel)
         }

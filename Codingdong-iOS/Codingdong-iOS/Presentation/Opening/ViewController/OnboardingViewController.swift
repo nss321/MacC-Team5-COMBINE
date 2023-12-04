@@ -34,7 +34,7 @@ final class OnboardingViewController: UIViewController {
     
     private let voiceOverTitle: UILabel = {
         let label = UILabel()
-        label.text = "VoiceOver 설정"
+        label.text = "Set VoiceOver"
         label.font = FontManager.headline()
         label.textColor = .gs20
         label.textAlignment = .center
@@ -44,9 +44,8 @@ final class OnboardingViewController: UIViewController {
     private let voiceOverDescription: UILabel = {
        let label = UILabel()
         label.text = """
-        손쉬운 사용의 VoiceOver를
-        켜시면 오디오 설명과 함께
-        코딩동을 즐길 수 있어요
+        Please turn on VoiceOver on your
+        iPhone for our app ‘Codingdong’.
         """
         label.textAlignment = .center
         label.font = FontManager.footnote()
@@ -56,7 +55,7 @@ final class OnboardingViewController: UIViewController {
     }()
     
     private let doneButton = CommonButton()
-    private lazy var doneButtonViewModel = CommonbuttonModel(title: "완료", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10) {[weak self] in
+    private lazy var doneButtonViewModel = CommonbuttonModel(title: "Done", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10) {[weak self] in
         self?.viewModel.tapNextButton()
     }
     

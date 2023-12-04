@@ -21,7 +21,7 @@ final class TigerEncountViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "호랑이를 마주친 엄마"
+        label.text = "Mother met the tiger"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -42,13 +42,12 @@ final class TigerEncountViewController: UIViewController, ConfigUI {
     private let contentLabel: UILabel = {
         let label = UILabel()
         label.text = """
-                    고개를 넘던 엄마는, 호랑이를 마주치고 말았어.
+                    Mother went to work early morning. While crossing the hill, she met a tiger.
 
-                    “떡 하나 주면 안 잡아먹지!”
+                    Tiger said.
+                    “I won’t hurt you if you give me one piece of rice cake.”
 
-                    호랑이가 엄마에게 떡을 달라며, 무섭게 으르렁 거리고 있어.
-
-                    호랑이에게 줄 떡꼬치를 만들어야해!
+                    Let’s make rice cake skewer for mother’s safety!
                     """
         label.font = FontManager.body()
         label.textColor = .gs10
@@ -59,7 +58,7 @@ final class TigerEncountViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "떡꼬치 만들기", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) {[weak self] in
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Make Rice Cake Skewer", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72) {[weak self] in
         self?.viewModel.moveOn()
     }
     
@@ -111,8 +110,8 @@ final class TigerEncountViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "타이틀 없음")
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let naviTitleElement = setupNavigationTitleAccessibility(label: navigationTitle.text ?? "No Title")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         view.accessibilityElements = [naviTitleElement, contentLabel, nextButton, leftBarButtonElement]
     }
     

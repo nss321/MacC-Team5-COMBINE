@@ -19,7 +19,7 @@ final class TigerAnimationViewController: UIViewController, ConfigUI {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "떡을 모두 빼앗긴 엄마는 결국 호랑이에게 잡아먹히고 말았어."
+        label.text = "Rice cakes were all taken, and finally mother was also eaten by the tiger."
         label.font = FontManager.body()
         label.textColor = .gs10
         label.numberOfLines = 0
@@ -34,7 +34,7 @@ final class TigerAnimationViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "다음으로", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72, didTouchUpInside: didClickNextButton)
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Next", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .primary2, height: 72, didTouchUpInside: didClickNextButton)
     
     private lazy var leftBarButtonItem: UIBarButtonItem = {
         let leftBarButton = UIBarButtonItem(
@@ -48,7 +48,7 @@ final class TigerAnimationViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "호랑이를 마주친 엄마"
+        label.text = "Mother met the tiger"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         
@@ -114,7 +114,7 @@ final class TigerAnimationViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         view.accessibilityElements = [titleLabel, nextButton, leftBarButtonElement]
     }
     

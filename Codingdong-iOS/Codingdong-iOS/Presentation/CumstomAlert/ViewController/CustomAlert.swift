@@ -21,7 +21,7 @@ final class CustomAlert:UIViewController, ConfigUI {
         let label = UILabel()
         label.font = FontManager.callout()
         label.textColor = .white
-        label.text = "메인으로"
+        label.text = "Back to the Bookshelf"
         label.textAlignment = .center
         return label
     }()
@@ -30,20 +30,11 @@ final class CustomAlert:UIViewController, ConfigUI {
         let label = UILabel()
         label.font = FontManager.caption2()
         label.textColor = .white
-        label.text = "동화를 나가시면 다시 처음부터 시작해요!"
+        label.text = "If you leave fable, it starts all over again!"
         label.textAlignment = .center
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
-    }()
-    
-    private let cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("남기", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = FontManager.caption2()
-        button.backgroundColor = .clear
-        return button
     }()
     
     private lazy var cancelLabel: UILabel = {
@@ -52,7 +43,7 @@ final class CustomAlert:UIViewController, ConfigUI {
         label.font = FontManager.caption2()
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "남기"
+        label.text = "Stay"
         label.tag = AlertButtonType.stay.rawValue
         let labelTap = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         label.addGestureRecognizer(labelTap)
@@ -65,7 +56,7 @@ final class CustomAlert:UIViewController, ConfigUI {
         label.font = FontManager.caption2()
         label.textColor = .secondary1
         label.textAlignment = .center
-        label.text = "돌아가기"
+        label.text = "Leave"
         label.tag = AlertButtonType.leave.rawValue
         let labelTap = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         label.addGestureRecognizer(labelTap)

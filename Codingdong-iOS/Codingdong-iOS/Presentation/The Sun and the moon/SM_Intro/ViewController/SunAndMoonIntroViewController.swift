@@ -21,7 +21,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "해님 달님"
+        label.text = "The Sun and The Moon"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -41,7 +41,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     // private let labelComponents = SunAndMoonIntroView()
     private let introLabel: UILabel = {
         let label = UILabel()
-        label.text = "해님달님의 각 이야기를 읽고, 다음과 같은 코딩 개념들을 함께 배워보자."
+        label.text = "Let's learn three coding concepts below!"
         label.isAccessibilityElement = true
         label.font = FontManager.body()
         label.textColor = .gs10
@@ -52,7 +52,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let firstConceptLabel: UILabel = {
         let label = UILabel()
-        label.text = "첫번째 이야기, 조건문."
+        label.text = "Concept 1. Conditional"
         label.font = FontManager.title3()
         label.textColor = .gs10
         label.numberOfLines = 0
@@ -62,7 +62,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let firstDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "호랑이랑 마주친 엄마"
+        label.text = "Mother met the tiger"
         label.font = FontManager.caption2()
         label.textColor = .gs30
         label.numberOfLines = 0
@@ -72,7 +72,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let secondConceptLabel: UILabel = {
         let label = UILabel()
-        label.text = "두번째 이야기, 연산자."
+        label.text = "Concept 2. Operator"
         label.font = FontManager.title3()
         label.textColor = .gs10
         label.numberOfLines = 0
@@ -82,7 +82,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let secondDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "남매의 집에 도착한 호랑이"
+        label.text = "At the sibling's house"
         label.font = FontManager.caption2()
         label.textColor = .gs30
         label.numberOfLines = 0
@@ -92,7 +92,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let thirdConceptLabel: UILabel = {
         let label = UILabel()
-        label.text = "세번째 이야기, 반복문."
+        label.text = "Concept 3. Loops"
         label.font = FontManager.title3()
         label.textColor = .gs10
         label.numberOfLines = 0
@@ -102,7 +102,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let thirdDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "동아줄을 잡은 남매와 호랑이"
+        label.text = "Climb the rope!"
         label.font = FontManager.caption2()
         label.textColor = .gs30
         label.numberOfLines = 0
@@ -112,7 +112,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     
     private let nextButton = CommonButton()
     
-    private lazy var nextButtonViewModel = CommonbuttonModel(title: "시작하기", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10, height: 72) {
+    private lazy var nextButtonViewModel = CommonbuttonModel(title: "Start", font: FontManager.textbutton(), titleColor: .primary1, backgroundColor: .gs10, height: 72) {
         self.viewModel.moveOn()
     }
     
@@ -196,7 +196,7 @@ final class SunAndMoonIntroViewController: UIViewController, ConfigUI {
     }
     
     func setupAccessibility() {
-        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "내 책장")
+        let leftBarButtonElement = setupLeftBackButtonItemAccessibility(label: "My Bookshelf")
         
         view.accessibilityElements = [introLabel]
         [[firstConceptLabel, firstDescriptionLabel], [secondConceptLabel, secondDescriptionLabel], [thirdConceptLabel, thirdDescriptionLabel]].forEach {

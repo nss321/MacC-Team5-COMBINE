@@ -36,7 +36,7 @@ final class MyBookShelfViewController: UIViewController, ConfigUI {
     
     private let navigationTitle: UILabel = {
         let label = UILabel()
-        label.text = "내 책장"
+        label.text = "My BookShelf"
         label.font = FontManager.navigationtitle()
         label.textColor = .gs20
         return label
@@ -44,7 +44,7 @@ final class MyBookShelfViewController: UIViewController, ConfigUI {
     
     private let storyTitle: UILabel = {
         let label = UILabel()
-        label.text = "전래동화"
+        label.text = "Korean Fairytale"
         label.font = FontManager.subhead()
         label.textColor = .gs10
         return label
@@ -52,7 +52,7 @@ final class MyBookShelfViewController: UIViewController, ConfigUI {
     
     private let badgeTitle: UILabel = {
         let label = UILabel()
-        label.text = "개념 간식 모음"
+        label.text = "Concept Badge"
         label.font = FontManager.subhead()
         label.textColor = .gs10
         return label
@@ -97,8 +97,8 @@ final class MyBookShelfViewController: UIViewController, ConfigUI {
        let label = UILabel()
         label.numberOfLines = 0
         label.text = """
-        간식이 없어요.
-        동화를 읽으러 가 보아요!
+        No badge.
+        Let's read and learn!
         """
         label.font = FontManager.footnote()
         label.textColor = .gs40
